@@ -47,7 +47,7 @@ body{
 
 button{
     border: none;
-    transition: background .5s linear;
+    transition: background .1s linear;
     width: 18.5vw;
     max-width: 110px;
     height: 18.5vw;
@@ -83,6 +83,70 @@ button{
     padding-left: 8.5%;
 }
 
-button:hover{
+.clicado{
+    background-color: white;
+    color: #ff9f0a;
+}
+
+/* button:hover{
     background-color: rgb(160, 160, 160);
+} */
+
+@media (max-width: 600px) {
+    body{
+        background-color: black;
+        padding: 0;
+    }
+  }
+
+@keyframes clickNumero {
+    0% {
+        background-color: #333333;
+    }
+    50% {
+        background-color: #737373;
+    }
+    100% {
+        background-color: #333333;
+    }
+
+}
+
+@keyframes clickAdicionais{
+    0% {
+        background-color: #a5a5a5;
+    }
+    50% {
+        background-color: #d9d9d9;
+    }
+    100% {
+        background-color: #a5a5a5;
+    }
+
+}
+
+@keyframes clickIgual{
+    0% {
+        background-color: #ff9f0a;
+    }
+    50% {
+        background-color: #d9d9d9;
+    }
+    100% {
+        background-color: #ff9f0a;
+    }
+
+}
+
+
+.animacao-numero {
+    animation: clickNumero 0.2s;
+}
+
+.animacao-adicionais {
+    animation: clickAdicionais 0.2s;
+}
+
+.animacao-igual {
+    animation: clickIgual .3s;
 }

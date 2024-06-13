@@ -1,5 +1,6 @@
 let display = document.getElementById('display');
 let btnNumeros = document.querySelectorAll('.numeros')
+let btnAdicionais= document.querySelectorAll('.adicionais')
 let btnSub = document.getElementById('subtrair');
 let btnAd = document.getElementById('somar');
 let btnMult = document.getElementById('multiplicar');
@@ -12,7 +13,7 @@ var n2 = 0.0;
 let operacao = '';
 let boolMudou = 0;
 var numero = [];
-var decimal = []
+var decimal = [];
 let virgula = false;
 
 
@@ -24,7 +25,21 @@ function verificarNumeroDisplay(){
 btnNumeros.forEach(btn=> {
     btn.addEventListener('click', (e) =>{
         let numero = e.target.innerText;
+        e.target.classList.add('animacao-numero');
+        setTimeout(() => {
+            e.target.classList.remove('animacao-numero');
+        }, 200);
         atualizaDisplay(numero);
+    })
+}
+)
+
+btnAdicionais.forEach(btn=> {
+    btn.addEventListener('click', (e) =>{
+        e.target.classList.add('animacao-adicionais');
+        setTimeout(() => {
+            e.target.classList.remove('animacao-adicionais');
+        }, 200);
     })
 }
 )
@@ -42,8 +57,13 @@ function adicionarDecimal(){
 }
 
 btnSub.addEventListener('click', () => {
+    if(boolMudou==0){
+
+    }
     if(operacao != ''){
         resultado();
+    }else{
+        btnSub.classList.add('clicado');
     }
     adicionarDecimal();
     n1 = Number(numero.join(''));
@@ -53,6 +73,8 @@ btnSub.addEventListener('click', () => {
 btnAd.addEventListener('click', () => {
     if(operacao != ''){
         resultado();
+    }else{
+        btnAd.classList.add('clicado');
     }
     n1 = Number(numero.join(''));
     operacao = '+';
@@ -61,6 +83,8 @@ btnAd.addEventListener('click', () => {
 btnMult.addEventListener('click', () => {
     if(operacao != ''){
         resultado();
+    }else{
+        btnMult.classList.add('clicado');
     }
     n1 = Number(numero.join(''));
     operacao = 'x';
@@ -69,6 +93,8 @@ btnMult.addEventListener('click', () => {
 btnDiv.addEventListener('click', () => {
     if(operacao != ''){
         resultado();
+    }else{
+        btnDiv.classList.add('clicado');
     }
     n1 = Number(numero.join(''));
     operacao = '/';
@@ -86,7 +112,13 @@ btnApagar.addEventListener('click', () =>{
     display.innerText = 0;
 })
 
-btnRes.addEventListener('click', resultado)
+btnRes.addEventListener('click', () => {
+    btnRes.classList.add('animacao-igual');
+        setTimeout(() => {
+            btnRes.classList.remove('animacao-igual');
+    }, 300);
+    resultado();
+})
 
 function resultado() {
     n2 = Number(numero.join(''));
@@ -111,7 +143,10 @@ function resultado() {
 
 function atualizaDisplay(num){
     if(boolMudou == 1){
-        console.log('mudou')
+        const clicados = document.querySelectorAll('.clicado');
+        clicados.forEach(elemento => {
+            elemento.classList.remove('clicado');
+        });
         boolMudou = 0;
         numero = [];
         decimal = [];
@@ -171,3 +206,4 @@ function separaGrupo(quant){
     grupos[0].splice(0, quant);
     return grupos.map(arr => arr.join('')).join('.')
 }
+
